@@ -11,5 +11,5 @@ pass init [GPG_KEY]
 ## Create the Docker Image
 
 ```commandline
-docker build -t lister:0.1.0 .
+docker build -t k8s-lister-go:0.1.0 .
 ```
