@@ -6,6 +6,7 @@ import (
 	"fmt"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
+	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 	"log"
 )
@@ -15,7 +16,11 @@ func main() {
 	flag.Parse()
 	config, err := clientcmd.BuildConfigFromFlags("", *kubeconfig)
 	if err != nil {
-		log.Fatalf("error %s building config from flags\n", err.Error())
+		fmt.Printf("error %s building config from flags\n", err.Error())
+		config, err = rest.InClusterConfig()
+		if err != nil {
+			fmt.Printf("error %s getting inclusterconfig\n", err.Error())
+		}
 	}
 	clientset, err := kubernetes.NewForConfig(config)
 	if err != nil {
