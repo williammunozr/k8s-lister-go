@@ -1,5 +1,5 @@
 FROM ubuntu
 
-COPY ./lister ./lister
+COPY ./k8s-lister-go ./k8s-lister-go
 
-ENTRYPOINT ["./lister"]
+ENTRYPOINT ["./k8s-lister-go"]
